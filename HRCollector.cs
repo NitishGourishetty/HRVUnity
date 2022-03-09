@@ -6,41 +6,26 @@ using UnityEngine;
 
 public class HRCollector : MonoBehaviour
 {
-    //This would only work on a windows laptop, else I would need to buy uduino
-    SerialPort arduino = new SerialPort("/dev/cu.usbmodem143101", 9600); //9600 bits per second
-    public String incomingData;
-    public int HeartRate = -1;
-    public volatile int IBI = -1;
+    public int incomingData = 0;
 
+    SerialPort sp = new SerialPort("\\\\.\\COM3", 9600);
 
-    // Start is called before the first frame update
     void Start()
     {
-        arduino.Open();
-        //arduino.ReadTimeout = 1; //adjust
+        sp.Open();
+        // sp.ReadTimeout = 500;
     }
 
     // Update is called once per frame
     void Update()
     {
-        try
+
+        if(sp.IsOpen)
         {
-            //B is heart Rate, and Q is Interbeat int
-            incomingData = int.Parse(arduino.ReadLine());
-            //incomingData = arduino.ReadLine();
-            //var values = incomingData.Split('B', 'Q');
+            incomingData = int.Parse(sp.ReadLine());
             Debug.Log(incomingData);
-            int tmpHR = HeartRate;
-             //int.TryParse(values[0], out tmpHR); //parses value to String
-           //HeartRate = tmpHR;
-            //parse inter-beat interval
-            //int tmpIBI = IBI;
-            //int.TryParse(values[1], out tmpIBI); //parses value to String
-           //IBI = tmpIBI;
-        }
-        catch (System.Exception)
-        {
 
         }
+
     }
 }
