@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class HRCollector : MonoBehaviour
 {
-    public int incomingData = 0;
+    public int heartRate = 0;
+    public int IBI = 0;
+    public bool isHeartRate = true;
 
     SerialPort sp = new SerialPort("\\\\.\\COM3", 9600);
 
@@ -22,9 +24,21 @@ public class HRCollector : MonoBehaviour
 
         if(sp.IsOpen)
         {
-            incomingData = int.Parse(sp.ReadLine());
-            Debug.Log(incomingData);
+            // incomingData = int.Parse(sp.ReadLine());
+            //we are sending 1 at a time
+            if (isHeartRate)
+            {
+                heartRate = int.Parse(sp.ReadLine());
+                Debug.Log("heart rate" + heartRate);
+                isHeartRate = false;
+            } else
+            {
+                IBI = int.Parse(sp.ReadLine());
+                Debug.Log("IBI" + IBI);
+                isHeartRate = true;
+            }
 
+            
         }
 
     }
