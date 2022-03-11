@@ -40,30 +40,31 @@ void setup() {
 
 void loop() {
 
+
+//All abstracted
  int myBPM = pulseSensor.getBeatsPerMinute();  // Calls function on our pulseSensor object that returns BPM as an "int".
-                                               // "myBPM" hold this BPM value now. 
+                                               // "myBPM" hold this BPM value now
+
+ int myIBI = pulseSensor.getInterBeatIntervalMs(); //Can output samples
+
+
+// sendData += "Q";
+// sendData += myIBI;
+
+ 
+ 
  // Serial.println(myBPM);  
  // Serial.flush();
 
 
  // Serial.println(1); // testing
 if (pulseSensor.sawStartOfBeat()) {            // Constantly test to see if "a beat happened". 
- //Serial.println("♥  A HeartBeat Happened ! "); // If test is "true", print a message "a heartbeat happened".
- //Serial.print("BPM: ");                        // Print phrase "BPM: " 
- Serial.println(myBPM);         // Print the value inside of myBPM. 
- // Serial.write(myBPM);
- //Serial.flush();
-
- //Serial.println(1); // testing
- // int bytesSent = Serial.write("hello");
- // Serial.println("bytesSent: ");
- // Serial.println(bytesSent);
-} else {
-  // Serial.println(1);
-}
-
+ Serial.println(myBPM);
+ Serial.println(myIBI);
+ //Serial.print("BPM: ");                        // Print phrase "BPM: "       // Print the value inside of myBPM. 
   // delay(20);                    // considered best practice in a simple sketch.
 
+}
 }
 
   
