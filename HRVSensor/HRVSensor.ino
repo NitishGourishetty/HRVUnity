@@ -1,4 +1,3 @@
-
 /*  Getting_BPM_to_Monitor prints the BPM to the Serial Monitor, using the least lines of code and PulseSensor Library.
  *  Tutorial Webpage: https://pulsesensor.com/pages/getting-advanced
  *
@@ -10,7 +9,8 @@
 --------------------------------------------------------------------*/
 
 #define USE_ARDUINO_INTERRUPTS true    // Set-up low-level interrupts for most acurate BPM math.
-#include <PulseSensorPlayground.h>     // Includes the PulseSensorPlayground Library.   
+#include <PulseSensorPlayground.h>     // Includes the PulseSensorPlayground Library.  
+#include <cmath> 
 
 //  Variables
 const int PulseWire = 0;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
@@ -47,6 +47,8 @@ void loop() {
 
  int myIBI = pulseSensor.getInterBeatIntervalMs(); //Can output samples
 
+ //log defaults to ln?
+ 
 
 // sendData += "Q";
 // sendData += myIBI;
@@ -58,13 +60,12 @@ void loop() {
 
 
  // Serial.println(1); // testing
-if (pulseSensor.sawStartOfBeat()) {            // Constantly test to see if "a beat happened". 
- Serial.println(myBPM);
+if (pulseSensor.sawStartOfBeat()) {            // Constantly test to see if "a beat happened". ]
+ float sigmoidBPM = (1/-0.75) * log(80/myBPM) // derived in math
+ Serial.println(sigmoidBPM);
  Serial.println(myIBI);
  //Serial.print("BPM: ");                        // Print phrase "BPM: "       // Print the value inside of myBPM. 
   // delay(20);                    // considered best practice in a simple sketch.
 
 }
 }
-
-  
