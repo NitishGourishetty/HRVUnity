@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Threading;
 using System.IO.Ports;
 using UnityEngine;
 
 public class HRCollector : MonoBehaviour
 {
-   public double heartRate = 0;
+    public double heartRate = 0;
     public double sigmoidHeartRate = 0;
     public int IBI = 0;
     public bool isHeartRate = true;
@@ -23,36 +24,37 @@ public class HRCollector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //Add try catches here btw bub
-        if(sp.IsOpen)
+        //Add try catches here btw bub
+        if (sp.IsOpen)
         {
             // incomingData = int.Parse(sp.ReadLine());
             //we are sending 1 at a time
             if (isHeartRate)
             {
-               sigmoidHeartRate = Convert.ToDouble(sp.ReadLine());
+                sigmoidHeartRate = Convert.ToDouble(sp.ReadLine());
                 Debug.Log(sigmoidHeartRate);
                 heartRate = Convert.ToDouble(sp.ReadLine());
                 Debug.Log(heartRate);
                 isHeartRate = false;
-                
-                
+
+
                 this.transform.localPosition = new Vector3(
-                position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * heartRate),
-                position.y + Mathf.Sin(Time.time * Mathf.PI * speedY),
+                position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * (float) sigmoidHeartRate)),
+                position.y + Mathf.Sin(Time.time * Mathf.PI * 1),
                 position.z);
-            } else
+            }
+            else
             {
                 IBI = int.Parse(sp.ReadLine());
                 Debug.Log("IBI" + IBI);
                 isHeartRate = true;
-                
-                this.transform.localPosition = new Vector3(
-                position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * IBI/800),
-                position.y + Mathf.Sin(Time.time * Mathf.PI * speedY),
-                position.z);
+
+                //this.transform.localPosition = new Vector3(
+               // position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * IBI / 800),
+                //position.y + Mathf.Sin(Time.time * Mathf.PI * speedY),
+                //position.z);
             }
-            
+
         }
 
     }
