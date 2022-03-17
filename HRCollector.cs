@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class HRCollector : MonoBehaviour
 {
-    public int heartRate = 0;
+   public double heartRate = 0;
+    public double sigmoidHeartRate = 0;
     public int IBI = 0;
     public bool isHeartRate = true;
     public Vector3 position;
@@ -22,15 +23,17 @@ public class HRCollector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+    //Add try catches here btw bub
         if(sp.IsOpen)
         {
             // incomingData = int.Parse(sp.ReadLine());
             //we are sending 1 at a time
             if (isHeartRate)
             {
-                heartRate = int.Parse(sp.ReadLine());
-                Debug.Log("heart rate" + heartRate);
+               sigmoidHeartRate = Convert.ToDouble(sp.ReadLine());
+                Debug.Log(sigmoidHeartRate);
+                heartRate = Convert.ToDouble(sp.ReadLine());
+                Debug.Log(heartRate);
                 isHeartRate = false;
                 
                 
