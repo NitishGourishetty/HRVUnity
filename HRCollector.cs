@@ -9,6 +9,7 @@ public class HRCollector : MonoBehaviour
     public int heartRate = 0;
     public int IBI = 0;
     public bool isHeartRate = true;
+    public Vector3 position;
 
     SerialPort sp = new SerialPort("\\\\.\\COM3", 9600);
 
@@ -31,13 +32,23 @@ public class HRCollector : MonoBehaviour
                 heartRate = int.Parse(sp.ReadLine());
                 Debug.Log("heart rate" + heartRate);
                 isHeartRate = false;
+                
+                
+                this.transform.localPosition = new Vector3(
+                position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * heartRate),
+                position.y + Mathf.Sin(Time.time * Mathf.PI * speedY),
+                position.z);
             } else
             {
                 IBI = int.Parse(sp.ReadLine());
                 Debug.Log("IBI" + IBI);
                 isHeartRate = true;
+                
+                this.transform.localPosition = new Vector3(
+                position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * IBI/800),
+                position.y + Mathf.Sin(Time.time * Mathf.PI * speedY),
+                position.z);
             }
-
             
         }
 
