@@ -34,6 +34,7 @@ Step 9: Select the COM port in Arduino IDE
 - On a Windows, go to Bluetooth Settings (click on more options in Settings>Bluetooth)
 - Click on the tab COM ports
 - Use the COM port that is "Outgoing" and has the name "HC-05 'Dev B'"
-- Select the above COM port in the Arduino IDE under Tools>Port
+- Select the above COM port (with the correct #!) in the Arduino IDE under Tools>Port
+<img width="481" alt="Screen_Shot_2022-04-12_at_10 47 57_PM" src="https://user-images.githubusercontent.com/77863500/164112826-fd9279b9-97cb-414e-8829-5555168a3843.png">
 
 Step 10: Open Serial Monitor and see the values transmitted through Bluetooth!
