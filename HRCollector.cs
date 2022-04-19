@@ -9,6 +9,7 @@ public class HRCollector : MonoBehaviour
 {
     public static double heartRate = 0;
     public static double sigmoidHeartRate = 0;
+    public static double sigmoidIBI = 0.5
     public static int IBI = 0;
     public static bool isHeartRate = true;
     public Vector3 position;
