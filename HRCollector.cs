@@ -37,11 +37,6 @@ public class HRCollector : MonoBehaviour
                 Debug.Log(heartRate);
                 isHeartRate = false;
 
-
-                this.transform.localPosition = new Vector3(
-                position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * (float) sigmoidHeartRate)),
-                position.y + Mathf.Sin(Time.time * Mathf.PI * 1),
-                position.z);
             }
             else
             {
@@ -49,10 +44,6 @@ public class HRCollector : MonoBehaviour
                 Debug.Log("IBI" + IBI);
                 isHeartRate = true;
 
-                //this.transform.localPosition = new Vector3(
-               // position.x + Mathf.Cos(Time.time + Mathf.Cos(Time.time * Mathf.PI * IBI / 800),
-                //position.y + Mathf.Sin(Time.time * Mathf.PI * speedY),
-                //position.z);
             }
 
         }
