@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class HRCollector : MonoBehaviour
 {
-    public double heartRate = 0;
-    public double sigmoidHeartRate = 0;
-    public int IBI = 0;
-    public bool isHeartRate = true;
+    public static double heartRate = 0;
+    public static double sigmoidHeartRate = 0;
+    public static int IBI = 0;
+    public static bool isHeartRate = true;
     public Vector3 position;
 
     SerialPort sp = new SerialPort("\\\\.\\COM3", 9600);
