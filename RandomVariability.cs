@@ -15,14 +15,6 @@ SampleHeartRateTrail : MonoBehaviour
         //Debug.Log(HRCollector.sigmoidHeartRate);
         //Debug.Log(HRCollector.IBI);
         //Debug.Log(HRCollector.heartRate);
-        
-
-        //var trails = ps.trails;
-        //trails.enabled = true;
-        //trails.ratio = 0.5f;
-        //shape.angle = 45;
-
-        //all biofeedback stuff will use shape!
     }
 
     // Update is called once per frame
@@ -36,40 +28,28 @@ SampleHeartRateTrail : MonoBehaviour
         var shape = ps.shape;
 
         main.startSize = (float) HRCollector.sigmoidHeartRate * 3;
-        //shape.shapeType = ParticleSystemShapeType.Circle;
-        //shape.radiusMode = ParticleSystemShapeMultiModeValue.BurstSpread; //can alter with biofeedback
-        //var sh = ps.shape;
-        //add distance shape stuff
-        //em.enabled = true;
+        main.startSpeed = (float)HRCollector.sigmoidHeartRate * 5;
+
+
+        shape.shapeType = ParticleSystemShapeType.Circle;
+        shape.radiusMode = ParticleSystemShapeMultiModeValue.BurstSpread; //can alter with biofeedback
+
         shape.enabled = true;
         //sh.enabled = true;
         em.rateOverTime = (float) HRCollector.sigmoidHeartRate; // can change
         sz.enabled = true;
         col.enabled = true;
-        //everytime a beat happens.. #will change
-        //em.SetBursts(
-        //    new ParticleSystem.Burst[]{
-        //        new ParticleSystem.Burst(1.0f, (float) HRCollector.sigmoidHeartRate * 10),
-        //        //new ParticleSystem.Burst(7.0f, (float) HRCollector.sigmoidIBI * 10)
-        //    });
 
-        //sh.shapeType = ParticleSystemShapeType.Mesh;
-        //sh.mesh = myMesh;
+        //add bursts later if want
+        //radius of shape change with variability
 
-        //AnimationCurve curve = new AnimationCurve();
-        //curve.AddKey(0.0f, 0.1f);
-        //curve.AddKey(0.75f, 1.0f);
-
-        //sz.size = new ParticleSystem.MinMaxCurve((float)HRCollector.sigmoidHeartRate, curve);
-
+        //dampen (limit velocity over lifetime)
 
         Gradient grad = new Gradient();
-        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(Color.red, 0f), new GradientColorKey(Color.yellow, 1f) }, new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(Color.blue, 0f), new GradientColorKey(Color.white, 4f) }, new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
 
         col.color = grad;
-       
-        
-
-
     }
 }
+
+
