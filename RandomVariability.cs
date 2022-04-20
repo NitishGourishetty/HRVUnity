@@ -27,12 +27,13 @@ SampleHeartRateTrail : MonoBehaviour
         var col = ps.colorOverLifetime;
         var shape = ps.shape;
 
-        main.startSize = (float) HRCollector.sigmoidHeartRate * 3;
-        main.startSpeed = (float)HRCollector.sigmoidHeartRate * 5;
+        main.startSize = (float) HRCollector.sigmoidHeartRate;
+        main.startSpeed = (float)HRCollector.sigmoidHeartRate * 2;
 
+        //arc mode random or birst spread for circle
 
         shape.shapeType = ParticleSystemShapeType.Circle;
-        shape.radiusMode = ParticleSystemShapeMultiModeValue.BurstSpread; //can alter with biofeedback
+        shape.radiusMode = ParticleSystemShapeMultiModeValue.Random; //can alter with biofeedback, burst for other one!!!!
 
         shape.enabled = true;
         //sh.enabled = true;
@@ -46,7 +47,7 @@ SampleHeartRateTrail : MonoBehaviour
         //dampen (limit velocity over lifetime)
 
         Gradient grad = new Gradient();
-        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(Color.blue, 0f), new GradientColorKey(Color.white, 4f) }, new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(Color.blue, 0f), new GradientColorKey(Color.white, 0.2f) }, new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
 
         col.color = grad;
     }
