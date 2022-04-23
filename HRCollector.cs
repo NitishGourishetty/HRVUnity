@@ -15,7 +15,6 @@ public class HRCollector : MonoBehaviour
     public static float testingCrystalVariability = 0.5f;
     public Vector3 position;
 
-    // change com port!!
     SerialPort sp = new SerialPort("\\\\.\\COM3", 9600);
 
 
@@ -40,7 +39,7 @@ public class HRCollector : MonoBehaviour
 
                 //sigmoidHeartRate = rnd.NextDouble(); // random gen
 
-                testingCrystalVariability = (float)sigmoidHeartRate * 10; //would be heart rate instead
+                testingCrystalVariability = (float)sigmoidHeartRate*10; //would be heart rate instead
                 //Debug.Log(testingCrystalVariability);
                 //Debug.Log(sigmoidHeartRate);
                 heartRate = Convert.ToDouble(sp.ReadLine());
@@ -56,7 +55,7 @@ public class HRCollector : MonoBehaviour
                 sigmoidIBI = rnd.NextDouble(); // random gen
 
                 //Debug.Log(sigmoidIBI);
-
+                isHeartRate = true;
             }
 
         }
