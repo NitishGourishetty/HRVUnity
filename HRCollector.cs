@@ -7,24 +7,28 @@ using UnityEngine;
 
 public class HRCollector : MonoBehaviour
 {
-    public static double heartRate = 0;
-    public static double sigmoidHeartRate = 0;
+    public static double heartRate = 70;
+    public static double sigmoidHeartRate = 0.5;
     public static double sigmoidIBI = 0.5;
-    public static int IBI = 0;
+    public static double IBI = 600; //work on vairability
     public static bool isHeartRate = true;
+    public static float testingCrystalVariability = 0.5f;
     public Vector3 position;
 
+    // change com port!!
     SerialPort sp = new SerialPort("\\\\.\\COM3", 9600);
 
+
+    // Start is called before the first frame update
     void Start()
     {
         sp.Open();
-        // sp.ReadTimeout = 500;
     }
 
     // Update is called once per frame
     void Update()
     {
+        System.Random rnd = new System.Random();
         //Add try catches here btw bub
         if (sp.IsOpen)
         {
@@ -33,17 +37,25 @@ public class HRCollector : MonoBehaviour
             if (isHeartRate)
             {
                 sigmoidHeartRate = Convert.ToDouble(sp.ReadLine());
-                Debug.Log(sigmoidHeartRate);
+
+                //sigmoidHeartRate = rnd.NextDouble(); // random gen
+
+                testingCrystalVariability = (float)sigmoidHeartRate * 10; //would be heart rate instead
+                //Debug.Log(testingCrystalVariability);
+                //Debug.Log(sigmoidHeartRate);
                 heartRate = Convert.ToDouble(sp.ReadLine());
-                Debug.Log(heartRate);
+
+                //heartRate = rnd.Next(40, 120); // random gen
+                //Debug.Log(heartRate);
                 isHeartRate = false;
 
             }
             else
             {
                 IBI = int.Parse(sp.ReadLine());
-                Debug.Log("IBI" + IBI);
-                isHeartRate = true;
+                sigmoidIBI = rnd.NextDouble(); // random gen
+
+                //Debug.Log(sigmoidIBI);
 
             }
 
