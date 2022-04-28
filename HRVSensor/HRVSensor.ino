@@ -15,7 +15,7 @@
 #include <math.h>
 
 //  Variables
-const int PulseWire = 0;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
+const int PulseWire = 1;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 1
 const int LED13 = 13;          // The on-board Arduino LED, close to PIN 13.
 int Threshold = 550;           // Determine which Signal to "count as a beat" and which to ignore.
                                // Use the "Gettting Started Project" to fine-tune Threshold Value beyond default setting.
